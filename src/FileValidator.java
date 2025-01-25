@@ -2,7 +2,9 @@ import implementingstreams.ImporterManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileValidator {
@@ -21,6 +23,7 @@ public class FileValidator {
 
     /**
      * Iterates through all file names in sourceFileNames and validates them.
+     *
      * @return The validated list of file names.
      */
     public List<String> validateFiles() {
@@ -36,6 +39,7 @@ public class FileValidator {
 
     /**
      * Makes all elements in a list lowercase.
+     *
      * @param list Source list.
      * @return Processed list.
      */
@@ -49,6 +53,7 @@ public class FileValidator {
 
     /**
      * Filters out all draft files in a list.
+     *
      * @param list Source list.
      * @return Processed list.
      */
@@ -64,6 +69,7 @@ public class FileValidator {
 
     /**
      * Filters out all hidden files in a list.
+     *
      * @param list Source list.
      * @return Processed list.
      */
@@ -79,6 +85,7 @@ public class FileValidator {
 
     /**
      * Sorts all elements in a list in the natural order.
+     *
      * @param list Source list.
      */
     public void sortList(List<String> list) {
@@ -88,6 +95,7 @@ public class FileValidator {
     /**
      * Uses a Stream to process all file names in sourceFileNames and validates them.
      * PARTICIPANTS: Complete this method.
+     *
      * @return The validated list of file names.
      */
     public List<String> validateFilesStream() {
@@ -102,61 +110,64 @@ public class FileValidator {
     /**
      * Create a stream from the given List.
      * PARTICIPANTS: Complete this method.
+     *
      * @param files Source List.
      * @return Created stream.
      */
     public Stream<String> createStream(List<String> files) {
-        return null;
+
+        return files.stream();
     }
 
     /**
      * Makes all elements in stream lowercase.
      * PARTICIPANTS: Complete this method.
+     *
      * @param stream Source stream.
      * @return Processed stream.
      */
     public Stream<String> makeLowerCaseStream(Stream<String> stream) {
-        return stream;
+
+        return stream.map(String::toLowerCase);
     }
 
     /**
      * Filters out all files in a stream with "draft" in their name.
-     * PARTICIPANTS: Complete this method.
+     *
      * @param stream Source stream.
      * @return Processed stream.
      */
     public Stream<String> removeDraftFilesStream(Stream<String> stream) {
-        return stream;
+        return stream.filter(file -> !file.toLowerCase().contains("draft"));
     }
 
     /**
      * Filters out all hidden files in a stream. Hidden files are files that start with a period.
-     * PARTICIPANTS: Complete this method.
+     *
      * @param stream Source stream.
      * @return Processed stream.
      */
     public Stream<String> removeHiddenFilesStream(Stream<String> stream) {
-        return stream;
+        return stream.filter(file -> !file.startsWith("."));
     }
 
     /**
      * Sorts all elements in a stream in the natural order.
-     * PARTICIPANTS: Complete this method.
+     *
      * @param stream Source stream.
      * @return Processed stream.
      */
     public Stream<String> sortListStream(Stream<String> stream) {
-        return stream;
+        return stream.sorted(Comparator.naturalOrder());
     }
 
     /**
      * Collects the stream as a List.
-     * PARTICIPANTS: Complete this method.
+     *
      * @param stream Source stream.
      * @return List of results.
      */
     public List<String> collectStreamResults(Stream<String> stream) {
-        return null;
+        return stream.collect(Collectors.toList());
     }
-
 }
